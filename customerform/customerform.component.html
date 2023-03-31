@@ -1,0 +1,57 @@
+<div class="outer">
+<h1>CUSTOMER FORM</h1>
+<div class="container">
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>
+        Company Name:
+        <input type="text" formControlName="companyName">
+        <div class="alert alert-danger" *ngIf="customerForm.get('companyName')?.invalid && (customerForm.get('companyName')?.dirty || customerForm.get('companyName')?.touched)">
+          <div *ngIf="customerForm.get('companyName')?.errors?.['required']">Company name is required.</div>
+          <div *ngIf="customerForm.get('companyName')?.errors?.['minlength']">Company name must be at least 4 characters long.</div>
+          <div *ngIf="customerForm.get('companyName')?.errors?.['maxlength']">Company name cannot be more than 40 characters long.</div>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label>
+        Email:
+        <input type="email" formControlName="email">
+        <div class="alert alert-danger" *ngIf="customerForm.get('email')?.invalid && (customerForm.get('email')?.dirty || customerForm.get('email')?.touched)">
+          <div *ngIf="customerForm.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="customerForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+        </div>
+      </label>
+    </div>
+    <div>
+      <label>
+        Phone Number:
+        <input type="text" formControlName="phoneno">
+        <div class="alert alert-danger" *ngIf="customerForm.get('phoneno')?.invalid && (customerForm.get('phoneno')?.dirty || customerForm.get('phoneno')?.touched)">
+          <div *ngIf="customerForm.get('phoneno')?.errors?.['required']">Phone number is required.</div>
+          <div *ngIf="customerForm.get('phoneno')?.errors?.['pattern']">Please enter a valid phone number.</div>
+        </div>
+      </label>
+    </div>
+    <div formArrayName="machines">
+      <div *ngFor="let machine of machineForms.controls; let i=index" [formGroupName]="i">
+        <label>
+          Machine Type:
+          <select formControlName="machineType">
+            <option *ngFor="let type of machineTypes" [value]="type">{{ type }}</option>
+          </select>
+        </label>
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" formControlName="amount">
+        <div class= "alert alert-danger" *ngIf="customerForm.get('machines.' + i + '.amount')?.invalid && (customerForm.get('machines.' + i + '.amount')?.dirty || customerForm.get('machines.' + i + '.amount')?.touched)">
+          <div *ngIf="customerForm.get('machines.' + i + '.amount')?.errors?.['required']">Amount is required.</div>
+          <div *ngIf="customerForm.get('machines.' + i + '.amount')?.errors?.['min']">Amount cannot be negative.</div>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="onDeleteMachine(i)">Delete Machine</button>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onAddMachine()">Add Machine</button>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!customerForm.valid">Place Order</button>
+  </form>
+</div>
+</div>

@@ -1,0 +1,77 @@
+.outer {
+    background-color: burlywood;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h1 {
+    text-align: center;
+    color: navy;
+  }
+.container {
+    background-color: #acbfe4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .alert-danger.ng-star-inserted {
+    animation: fadeIn 0.5s ease;
+  }
+  
+  label.ng-star-inserted {
+    animation: slideIn 0.5s ease;
+  }
